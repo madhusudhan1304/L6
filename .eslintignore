@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 migrations
 models
+=======
+migrations/
+models/
+>>>>>>> 6724317 (third)
