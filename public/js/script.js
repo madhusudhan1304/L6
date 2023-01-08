@@ -1,1 +1,1 @@
-console.log("EJS Application");
+console.log("Vineeth");
