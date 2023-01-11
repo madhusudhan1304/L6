@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="<%= csrfToken %>" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="/js/script.js" type="text/javascript"></script>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <!-- ender the contents of header.js -->
+
+    <div class="grid grid-cols-6">
+      <div class="col-start-3 col-span-2">
+        <header><%- include('header.ejs') %>
+        </header>
+        
+
+      
+        <form action="/todos" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="flex gap-2 py-4">
+            <div class="flex-auto">
+              <input
+                type="text"
+                name="title"
+                placeholder="What's next?"
+                class="border border-gray-300 w-full rounded p-2 text-sm"
+                required
+                autofocus
+              />
+            </div>
+            <div class="flex-auto">
+              <input
+                type="date"
+                name="dueDate"
+                required
+                class="border border-gray-300 w-full rounded p-2 text-sm leading-5"
+                value='<%= new Date().toLocaleDateString("en-CA"); %>'
+              />
+            </div>
+            <div class="flex-none">
+              <button
+                type="submit"
+                class="bg-green-500 text-white px-4 py-1.5 rounded font-medium mr-2 mb-2 py-1 border-2 border-green-600"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
+        <br />
+
+      
+
+        <!-- render contents of todo.ejs -->
+        <%- include('todo.ejs', {title: "Overdue", todoItems: overdueItems}) %>
+        <%- include('todo.ejs', {title: "Due Today", todoItems: dueTodayItems}) %>
+        <%- include('todo.ejs', {title: "Due Later", todoItems: dueLaterItems}) %>
+        <%- include('todo.ejs', {title: "Completed Items", todoItems: completedItems}) %>
+        
+    <!-- render the contents of footer.ejs  -->
+    <%- include("footer.ejs") %>
+  </body>
+</html>
